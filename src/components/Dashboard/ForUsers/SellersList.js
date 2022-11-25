@@ -34,6 +34,22 @@ const SellersList = () => {
     if (isLoading) {
         return <Loader></Loader>;
     }
+
+    const handleMakeAdmin = (id) => {
+        fetch(`http://localhost:5000/users/admin/${id}`, {
+            method: 'PUT',
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.modifiedCount > 0) {
+                    toast.success('Your role has been changed');
+                    refetch();
+                }
+            });
+    };
+
+
     return (
         <div>
             <h2>Sellers List {sellers.length}</h2>
@@ -46,6 +62,7 @@ const SellersList = () => {
                             <th>Name</th>
                             <th>Email</th>
                             <th>Role</th>
+                            <th>Change Role</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -57,6 +74,14 @@ const SellersList = () => {
                                 <td>{seller.name}</td>
                                 <td>{seller.email}</td>
                                 <td>{seller.role}</td>
+                                <td>
+                                    {
+                                        seller?.role !== 'Admin' &&
+                                        <Link onClick={() => handleMakeAdmin(seller._id)}
+                                            className='px-2 py-1 rounded-md text-white bg-rose-500'>Make Admin</Link>
+                                    }
+                                </td>
+
                                 <td>
                                     <Link onClick={() => handleUserDelete(seller)}
                                         className='px-2 py-1 rounded-md text-white bg-rose-500'>Delete</Link>

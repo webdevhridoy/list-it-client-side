@@ -34,6 +34,20 @@ const BuyerList = () => {
             });
     };
 
+    const handleMakeAdmin = (id) => {
+        fetch(`http://localhost:5000/users/admin/${id}`, {
+            method: 'PUT',
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.modifiedCount > 0) {
+                    toast.success('Your role has been changed');
+                    refetch();
+                }
+            });
+    };
+
 
     return (
         <div>
@@ -47,6 +61,7 @@ const BuyerList = () => {
                             <th>Name</th>
                             <th>Email</th>
                             <th>Role</th>
+                            <th>Change Role</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -58,6 +73,13 @@ const BuyerList = () => {
                                 <td>{buyer.name}</td>
                                 <td>{buyer.email}</td>
                                 <td>{buyer.role}</td>
+                                <td>
+                                    {
+                                        buyer?.role !== 'Admin' &&
+                                        <Link onClick={() => handleMakeAdmin(buyer._id)}
+                                            className='px-2 py-1 rounded-md text-white bg-rose-500'>Make Admin</Link>
+                                    }
+                                </td>
                                 <td>
                                     <Link onClick={() => handleUserDelete(buyer)}
                                         className='px-2 py-1 rounded-md text-white bg-rose-500'>Delete</Link>
