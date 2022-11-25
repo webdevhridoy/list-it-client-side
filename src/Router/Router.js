@@ -11,7 +11,6 @@ import MyBuyers from '../components/Dashboard/ForSellers/MyBuyers';
 import MyProducts from '../components/Dashboard/ForSellers/MyProducts';
 import AdminList from '../components/Dashboard/ForUsers/AdminList';
 import BuyerList from '../components/Dashboard/ForUsers/BuyerList';
-import ReportedItems from '../components/Dashboard/ForUsers/ReportedItems';
 import SellersList from '../components/Dashboard/ForUsers/SellersList';
 import LeftSideBar from '../components/DashBoardLayout/LeftSideBar';
 import Blog from '../components/pages/Blog/Blog';

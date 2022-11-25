@@ -1,13 +1,11 @@
 import React from 'react';
-import { useState } from "react";
 import { Link } from 'react-router-dom';
 import logo from '../../../assest/logo-white.svg';
 
 const Footer = () => {
-    const [mode, setMode] = useState("auto");
     return (
         <div className="pt-12">
-            <footer id="footer" className="relative z-50 bg-gray-900 ">
+            <footer id="footer" className="relative z-50 bg-black ">
                 <div className="py-16 flex flex-col justify-center items-center">
                     <Link to='/'>
                         <img src={logo} alt="" />

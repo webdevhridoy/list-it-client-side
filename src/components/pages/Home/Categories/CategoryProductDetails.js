@@ -51,8 +51,8 @@ const CategoryProductDetails = ({ product }) => {
                 <div className='flex justify-center items-center'>
                     <img src={img} alt="" className="w-44 mb-4  bg-gray-500" />
                 </div>
-                <h2 className="mb-1 text-xl font-semibold">{productname}</h2>
-                <p className="text-sm  text-gray-900"> Price: <span >{resaleprice}</span> <span className='line-through'>{originalprice}</span>
+                <h2 className="mb-1 text-2xl font-semibold">{productname}</h2>
+                <p className="text-gray-900 text-lg font-semibold"> Price: <span >{resaleprice}</span> <span className='line-through'>{originalprice}</span>
                 </p>
                 <p className="text-sm  text-gray-400">{description}</p>
             </div>
