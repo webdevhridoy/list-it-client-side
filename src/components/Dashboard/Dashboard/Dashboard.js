@@ -12,9 +12,8 @@ const Dashboard = () => {
     const users = <>
 
         <Link className=' hover:bg-rose-500 py-1' to='/dashboard/listofadmin' >List of Admin</Link>
-        <Link className=' hover:bg-rose-500 py-1' to='/dashboard/listofbuyers' >List of Buyers</Link>
-        <Link className=' hover:bg-rose-500 py-1' to='/dashboard/listofsellers' >List of Seller</Link>
-        <Link className=' hover:bg-rose-500 py-1' to='/dashboard/reporteditems' >Reported Item</Link>
+        <Link className=' hover:bg-rose-500 py-1' to='/dashboard/listofsellers' >All Sellers</Link>
+        <Link className=' hover:bg-rose-500 py-1' to='/dashboard/listofbuyers' >All Buyers</Link>
     </>;
 
     const seller = <>

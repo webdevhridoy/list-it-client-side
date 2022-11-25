@@ -17,7 +17,7 @@ const Header = () => {
             <><li><Link to="/" >Home</Link></li>
                 <li><Link to="/blog" >Blog</Link></li>
                 <li><Link to="/" ><button onClick={handleSignOut}>Signout</button></Link></li>
-                <li><Link className='bg-rose-500 rounded-sm text-white ' to="/dashboard" >Deashboard</Link></li></>
+                <li><Link className='bg-rose-500 rounded-sm text-white' to="/dashboard" >Dashboard</Link></li></>
 
             :
             <>
@@ -31,7 +31,7 @@ const Header = () => {
 
     </React.Fragment>;
     return (
-        <div className='text-white'>
+        <div className='text-white lg:mx-24'>
             <div className="navbar bg-black">
                 <div className="navbar-start">
                     <div className="dropdown">

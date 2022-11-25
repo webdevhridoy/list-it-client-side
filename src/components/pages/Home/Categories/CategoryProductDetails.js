@@ -58,18 +58,18 @@ const CategoryProductDetails = ({ product }) => {
             </div>
             <div className="flex flex-wrap justify-between">
                 <div className="space-x-2">
-                    <button aria-label="Location" type="button" className="p-2 text-center flex justify-between items-center">
+                    <p aria-label="Location" type="button" className="p-2 text-center flex justify-between items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
                             <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
                         </svg>
                         <span>{location}</span>
-                    </button>
+                    </p>
 
                 </div>
                 <div className="flex space-x-2 text-sm  text-gray-400">
-                    <button type="button" className="flex items-center p-1 space-x-1.5"> Used: {yearsofuse} Year
-                    </button>
+                    <p type="button" className="flex items-center p-1 space-x-1.5"> Used: {yearsofuse} Year
+                    </p>
                     <button
                         onClick={handleWishList}
                         title='Wish List'
@@ -83,7 +83,7 @@ const CategoryProductDetails = ({ product }) => {
                 <button >
                     <label onClick={() => handleModal(product)}
                         htmlFor="my-modal"
-                        className="btn">Book Now</label>
+                        className="btn bg-rose-500 border-0 text-white">Book Now</label>
                 </button>
             </div>
             {modalItem &&

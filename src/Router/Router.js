@@ -52,10 +52,6 @@ export const router = createBrowserRouter([
                         element: <SellersList></SellersList>
                     },
                     {
-                        path: '/dashboard/reporteditems',
-                        element: <ReportedItems></ReportedItems>
-                    },
-                    {
                         path: '/dashboard/addcategory',
                         element: <AddCategory></AddCategory>
                     },
