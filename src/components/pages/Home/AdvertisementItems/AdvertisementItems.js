@@ -1,52 +1,49 @@
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import AdvertiseDetails from './AdvertiseDetails';
+import ads from '../../../../assest/ads.png';
+import Loader from '../../../Loader/Loader';
 
 const AdvertisementItems = () => {
+
+    const { data: advertisements = [], isLoading } = useQuery({
+        queryKey: ['advertisement'],
+        queryFn: async () => {
+            const res = await fetch('http://localhost:5000/advertisement');
+            const data = await res.json();
+            return data;
+        }
+    });
+
+    if (isLoading) {
+        return <Loader></Loader>;
+    }
     return (
         <div className='py-12 px-5'>
             <h1 className="mb-5 text-2xl md:text-5xl font-bold">Advertised items</h1>
             <div className='flex justify-center flex-col md:flex-row  items-center gap-10'>
-                <div className="card w-96 bg-base-100 shadow-xl">
-                    <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
-                    <div className="card-body">
-                        <h2 className="card-title">
-                            Shoes!
-                            <div className="badge badge-secondary">NEW</div>
-                        </h2>
-                        <p>If a dog chews shoes whose shoes does he choose?</p>
-                        <div className="card-actions justify-end">
-                            <div className="badge badge-outline">Fashion</div>
-                            <div className="badge badge-outline">Products</div>
-                        </div>
-                    </div>
-                </div>
-                <div className="card w-96 bg-base-100 shadow-xl">
-                    <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
-                    <div className="card-body">
-                        <h2 className="card-title">
-                            Shoes!
-                            <div className="badge badge-secondary">NEW</div>
-                        </h2>
-                        <p>If a dog chews shoes whose shoes does he choose?</p>
-                        <div className="card-actions justify-end">
-                            <div className="badge badge-outline">Fashion</div>
-                            <div className="badge badge-outline">Products</div>
-                        </div>
-                    </div>
-                </div>
-                <div className="card w-96 bg-base-100 shadow-xl">
-                    <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
-                    <div className="card-body">
-                        <h2 className="card-title">
-                            Shoes!
-                            <div className="badge badge-secondary">NEW</div>
-                        </h2>
-                        <p>If a dog chews shoes whose shoes does he choose?</p>
-                        <div className="card-actions justify-end">
-                            <div className="badge badge-outline">Fashion</div>
-                            <div className="badge badge-outline">Products</div>
-                        </div>
-                    </div>
-                </div>
+                {
+                    advertisements.length === 0 ? <>
+                        <img className='w-full' src={ads} alt="" />
+
+                    </>
+                        :
+                        <>
+                            <div className='grid grid-cols-1 md:grid-cols-3 gap-10'>
+                                {
+
+                                    advertisements.map(ads => <AdvertiseDetails
+                                        key={ads._id}
+                                        ads={ads}
+                                    ></AdvertiseDetails>)
+                                }
+                            </div>
+                        </>
+
+                }
+
+
+
             </div>
         </div>
     );

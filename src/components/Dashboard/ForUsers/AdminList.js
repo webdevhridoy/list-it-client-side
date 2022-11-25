@@ -1,9 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import Loader from '../../Loader/Loader';
 
 const AdminList = () => {
 
-    const { data: users = [] } = useQuery({
+    const { data: users = [], isLoading } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/users');
@@ -12,6 +13,10 @@ const AdminList = () => {
         }
 
     });
+
+    if (isLoading) {
+        return <Loader></Loader>;
+    }
 
     return (
         <div >
