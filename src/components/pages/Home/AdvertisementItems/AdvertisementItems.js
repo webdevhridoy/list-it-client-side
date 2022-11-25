@@ -3,7 +3,7 @@ import React from 'react';
 const AdvertisementItems = () => {
     return (
         <div className='py-12 px-5'>
-            <h1 className="mb-5 text-5xl font-bold">Advertised items</h1>
+            <h1 className="mb-5 text-2xl md:text-5xl font-bold">Advertised items</h1>
             <div className='flex justify-center flex-col md:flex-row  items-center gap-10'>
                 <div className="card w-96 bg-base-100 shadow-xl">
                     <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>

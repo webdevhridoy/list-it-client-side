@@ -33,7 +33,7 @@ const Login = () => {
                 <label htmlFor="username" className="self-start text-xs font-semibold"> Email</label>
                 <input {...register('email')} className="flex items-center text-black h-12 px-4 mt-2 rounded focus:outline-none focus:ring-2" />
                 <label htmlFor="password" className="self-start mt-3 text-xs font-semibold">Password</label>
-                <input {...register('password')} className="flex items-center h-12 text-black px-4 mt-2 rounded focus:outline-none focus:ring-2" />
+                <input type='password' {...register('password')} className="flex items-center h-12 text-black px-4 mt-2 rounded focus:outline-none focus:ring-2" />
                 <button type="submit" className="flex items-center justify-center bg-white text-black mt-5 h-12 ">Login</button>
 
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 const MyOrders = () => {
@@ -22,8 +23,6 @@ const MyOrders = () => {
     useEffect(() => {
         fetchQuotes();
     }, []);
-
-    console.log(response);
 
     return (
         <div>
@@ -52,7 +51,16 @@ const MyOrders = () => {
                                 <td>{book.mobile}</td>
                                 <td>{book.location}</td>
                                 <td>
-                                    <label htmlFor="confirmationModal" className="px-2 py-1 rounded-md text-white bg-rose-500 cursor-pointer">Pay</label>
+                                    {
+                                        book.productprice && !book.paid &&
+                                        <Link to={`/dashboard/payments/${book._id}`} className='px-2 py-1 rounded-md text-white bg-rose-500'
+                                        >Pay</Link>
+                                    }
+                                    {
+                                        book.productprice && book.paid &&
+                                        <p className='px-2 py-1 rounded-md text-white bg-rose-500 disabled'>Paid</p>
+                                    }
+
                                 </td>
                             </tr>)
                         }

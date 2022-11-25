@@ -14,8 +14,10 @@ import BuyerList from '../components/Dashboard/ForUsers/BuyerList';
 import ReportedItems from '../components/Dashboard/ForUsers/ReportedItems';
 import SellersList from '../components/Dashboard/ForUsers/SellersList';
 import LeftSideBar from '../components/DashBoardLayout/LeftSideBar';
+import Blog from '../components/pages/Blog/Blog';
 import CategoryGrid from '../components/pages/Home/Categories/CategoryGrid';
 import Home from '../components/pages/Home/Home';
+import Payment from '../components/pages/Payment/Payment';
 import Main from '../layout/Main';
 
 export const router = createBrowserRouter([
@@ -80,8 +82,19 @@ export const router = createBrowserRouter([
                     },
                     {
                         path: '/dashboard/wishlist',
+                        loader: () => fetch('http://localhost:5000/wishlist'),
                         element: <WishLists></WishLists>
-                    }
+                    },
+                    {
+                        path: '/dashboard/payments/:id',
+                        loader: ({ params }) => fetch(`http://localhost:5000/bookings/${params.id}`),
+                        element: <Payment></Payment>
+                    },
+                    {
+                        path: '/dashboard/wishlist/:id',
+                        loader: ({ params }) => fetch(`http://localhost:5000/wishlist/${params.id}`),
+                        element: <Payment></Payment>
+                    },
                 ]
             },
             {
@@ -91,6 +104,10 @@ export const router = createBrowserRouter([
             {
                 path: '/signup',
                 element: <Signup></Signup>
+            },
+            {
+                path: '/blog',
+                element: <Blog></Blog>
             }
         ]
     }

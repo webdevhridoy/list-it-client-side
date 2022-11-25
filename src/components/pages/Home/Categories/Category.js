@@ -11,7 +11,7 @@ const Category = ({ category }) => {
                 <p>If a dog chews shoes whose shoes does he choose?</p>
                 <div className="card-actions justify-center">
                     <Link to={`/categories/${_id}`}>
-                        <button className="btn btn-sm btn-primary">View Products</button>
+                        <button className="bg-white px-3 py-2 rounded-md text-black hover:bg-rose-500 hover:text-white duration-500">View Products</button>
                     </Link>
                 </div>
             </div>

@@ -15,15 +15,14 @@ const Header = () => {
     const navBar = <React.Fragment>
         {user?.uid || user?.email ?
             <><li><Link to="/" >Home</Link></li>
-                <li><Link to="/categories" >Categories</Link></li>
+                <li><Link to="/blog" >Blog</Link></li>
                 <li><Link to="/" ><button onClick={handleSignOut}>Signout</button></Link></li>
                 <li><Link className='bg-rose-500 rounded-sm text-white ' to="/dashboard" >Deashboard</Link></li></>
 
             :
             <>
                 <li><Link to="/" >Home</Link></li>
-                <li><Link to="/about" >About</Link></li>
-                <li><Link to="/services" >Service</Link></li>
+                <li><Link to="/blog" >Blog</Link></li>
                 <li><Link to="/login" >Login</Link></li>
             </>
 

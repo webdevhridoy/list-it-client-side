@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { authContext } from '../../../context/AuthProvider';
+import useAdmin from '../../Hook/useAdmin';
+import useSeller from '../../Hook/useSeller';
 
 const Dashboard = () => {
+    const { user } = useContext(authContext);
+    const [isAdmin] = useAdmin(user?.email);
+    const [isSeller] = useSeller(user?.email);
 
-    const user = <>
+    const users = <>
 
         <Link className=' hover:bg-rose-500 py-1' to='/dashboard/listofadmin' >List of Admin</Link>
         <Link className=' hover:bg-rose-500 py-1' to='/dashboard/listofbuyers' >List of Buyers</Link>
@@ -27,26 +33,43 @@ const Dashboard = () => {
         <div>
             <aside className="w-full p-6 sm:w-60 bg-black text-white mt-10">
                 <nav className="space-y-8 text-sm">
-                    <div className="space-y-2">
-                        <h2 className="text-2xl font-semibold tracking-widest uppercase ">Users</h2>
-                        <div className="flex flex-col space-y-1">
-                            {user}
-                        </div>
-                    </div>
+                    {
+                        isAdmin && <>
+                            <div className="space-y-2">
+                                <h2 className="text-2xl font-semibold tracking-widest uppercase ">Users</h2>
+                                <div className="flex flex-col space-y-1">
+                                    {users}
+                                </div>
+                            </div>
+                            <hr />
+                            <div className="space-y-2">
+                                <h2 className="text-2xl font-semibold tracking-widest uppercase ">Seller</h2>
+                                <div className="flex flex-col space-y-1">
+                                    {seller}
+                                </div>
+
+                            </div>
+                        </>
+                    }
+                    {
+                        isSeller && <>
+                            <div className="space-y-2">
+                                <h2 className="text-2xl font-semibold tracking-widest uppercase ">Seller</h2>
+                                <div className="flex flex-col space-y-1">
+                                    {seller}
+                                </div>
+                            </div>
+                        </>
+                    }
                     <hr />
-                    <div className="space-y-2">
-                        <h2 className="text-2xl font-semibold tracking-widest uppercase ">Seller</h2>
-                        <div className="flex flex-col space-y-1">
-                            {seller}
+                    {
+                        !isSeller && <div className="space-y-2">
+                            <h2 className="text-2xl font-semibold tracking-widest uppercase ">Buyer</h2>
+                            <div className="flex flex-col space-y-1">
+                                {buyer}
+                            </div>
                         </div>
-                    </div>
-                    <hr />
-                    <div className="space-y-2">
-                        <h2 className="text-2xl font-semibold tracking-widest uppercase ">Buyer</h2>
-                        <div className="flex flex-col space-y-1">
-                            {buyer}
-                        </div>
-                    </div>
+                    }
 
                 </nav>
             </aside>

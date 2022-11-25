@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import BookingModal from '../../Booking/BookingModal';
 
@@ -6,44 +7,36 @@ const CategoryProductDetails = ({ product }) => {
     const { productname, location, resaleprice, yearsofuse, img, utcDate, sellername, description, originalprice } = product;
     const [modalItem, setModalItem] = useState(null);
     // console.log(product);
-    const [isWishAdd, setIsWishAdd] = useState(false);
-    const [wishCount, setWishCount] = useState(0);
+    // const [isWishAdd, setIsWishAdd] = useState(false);
 
     const handleModal = (product) => {
         setModalItem(product);
     };
 
+    const handleWishList = () => {
+        const wishList = {
 
-    const handleWishList = (product) => {
-        console.log(product);
-        setIsWishAdd(!isWishAdd);
+            productname,
+            resaleprice,
+            img
+        };
+
+        fetch('http://localhost:5000/wishlist', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(wishList)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.acknowledged) {
+                    toast.success('Wish List Added');
+                }
+            });
     };
 
-    const wishCountHandler = () => {
-        handleWishList();
-        if (!isWishAdd) {
-            setWishCount(wishCount + 1);
-            // fetch(`https://27.96.131.85:8443/api/likeBoards/${boards.id}`, {
-            //     credentials: 'include',
-            //     method: "POST",
-            //     body: JSON.stringify({
-            //         "liked": true
-            //     }),
-            // });
-
-            // console.log("count+1");
-        } else if (isWishAdd) {
-            setWishCount(wishCount - 1);
-            // fetch(`https://27.96.131.85:8443/api/likeBoards/${boards.id}`, {
-            //     credentials: 'include',
-            //     method: "DELETE",
-            //     body: JSON.stringify({
-            //         "liked": false
-            //     })
-            // });
-            // console.log("count-1");
-        }
-    };
 
     return (
         <div className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-md text-black   ">
@@ -78,7 +71,7 @@ const CategoryProductDetails = ({ product }) => {
                     <button type="button" className="flex items-center p-1 space-x-1.5"> Used: {yearsofuse} Year
                     </button>
                     <button
-                        onClick={wishCountHandler}
+                        onClick={handleWishList}
                         title='Wish List'
                         type="button"
                         className="flex items-center p-1 space-x-1.5">
