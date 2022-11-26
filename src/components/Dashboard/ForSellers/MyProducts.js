@@ -1,8 +1,6 @@
-import { useQuery } from '@tanstack/react-query';
 import { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { authContext } from '../../../context/AuthProvider';
-import Loader from '../../Loader/Loader';
 import SingleProduct from './SingleProduct';
 
 const MyProducts = () => {

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
 import BookingModal from '../../Booking/BookingModal';
 
 const CategoryProductDetails = ({ product }) => {
-    const { productname, location, resaleprice, yearsofuse, img, utcDate, sellername, description, originalprice } = product;
+    // const {user}= useContext(authContext)
+    const { productname, location, resaleprice, yearsofuse, img, utcDate, sellername, description, originalprice, status } = product;
     const [modalItem, setModalItem] = useState(null);
-    // console.log(product);
+    console.log(product);
     // const [isWishAdd, setIsWishAdd] = useState(false);
 
     const handleModal = (product) => {
@@ -40,13 +40,29 @@ const CategoryProductDetails = ({ product }) => {
 
     return (
         <div className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-md text-black   ">
-            <div className="flex space-x-4">
-                <img alt="" src="https://source.unsplash.com/100x100/?portrait" className="object-cover w-12 h-12 rounded-full shadow  bg-gray-500" />
-                <div className="flex flex-col space-y-1">
-                    <Link rel="noopener noreferrer" href="#" className="text-sm font-semibold" alt>{sellername}</Link>
-                    <span className="text-xs  text-gray-400">{utcDate}</span>
+            <div className='flex justify-between'>
+                <div className="flex justify-center space-x-4">
+                    <img alt="" src="https://source.unsplash.com/100x100/?portrait" className="object-cover w-12 h-12 rounded-full shadow  bg-gray-500" />
+                    <div className="flex justify-center space-y-1">
+                        <span className='mr-1'>
+                            {sellername}
+                        </span>
+                        <span className='mr-1'>
+                            {
+                                status === 'Verified' && <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="blue" className="w-6 h-6">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+                                    </svg>
+                                </div>
+                            }
+                        </span>
+                    </div>
+                </div>
+                <div>
+                    {utcDate}
                 </div>
             </div>
+
             <div>
                 <div className='flex justify-center items-center'>
                     <img src={img} alt="" className="w-44 mb-4  bg-gray-500" />

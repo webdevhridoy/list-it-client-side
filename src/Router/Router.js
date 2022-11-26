@@ -19,12 +19,14 @@ import CategoryGrid from '../components/pages/Home/Categories/CategoryGrid';
 import Home from '../components/pages/Home/Home';
 import Payment from '../components/pages/Payment/Payment';
 import PrivateRouter from '../components/PrivateRouter/PrivateRouter';
+import ErrorPage from '../components/shared/ErrorPage/ErrorPage';
 import Main from '../layout/Main';
 
 export const router = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',
@@ -33,7 +35,7 @@ export const router = createBrowserRouter([
             {
                 path: '/categories/:id',
                 loader: ({ params }) => fetch(`http://localhost:5000/products/${params.id}`),
-                element: <CategoryGrid></CategoryGrid>
+                element: <PrivateRouter><CategoryGrid></CategoryGrid></PrivateRouter>
             },
 
             {

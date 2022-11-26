@@ -6,7 +6,7 @@ import { authContext } from '../../../context/AuthProvider';
 
 const BookingModal = ({ product, setModalItem }) => {
     const navigate = useNavigate();
-    const { productname, resaleprice } = product;
+    const { productname, resaleprice, img } = product;
     const { user } = useContext(authContext);
     const { register, handleSubmit } = useForm();
 
@@ -19,7 +19,10 @@ const BookingModal = ({ product, setModalItem }) => {
             yourname: data.yourname,
             location: data.location,
             mobile: data.mobile,
-            email: data.email
+            email: data.email,
+            img
+
+
         };
 
         console.log(bookings);

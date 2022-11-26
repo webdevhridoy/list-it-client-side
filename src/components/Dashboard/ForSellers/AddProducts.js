@@ -8,6 +8,7 @@ import Loader from '../../Loader/Loader';
 
 const AddProducts = () => {
     const { user } = useContext(authContext);
+    console.log(user);
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate();
     const { data: categories = [], isLoading } = useQuery({

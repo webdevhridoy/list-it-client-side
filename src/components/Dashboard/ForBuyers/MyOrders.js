@@ -35,11 +35,11 @@ const MyOrders = () => {
                 <thead>
                     <tr>
                         <th>SL</th>
+                        <th>Image</th>
                         <th>Product Name</th>
                         <th>Name</th>
                         <th>Price</th>
                         <th>Phone</th>
-                        <th>Location</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -48,11 +48,13 @@ const MyOrders = () => {
                     {
                         response?.map((book, index) => <tr>
                             <th>{index + 1}</th>
+                            <td>
+                                <img className='w-12' src={book.img} alt="" />
+                            </td>
                             <td>{book.productname}</td>
                             <td>{book.yourname}</td>
                             <td>${book.productprice}</td>
                             <td>{book.mobile}</td>
-                            <td>{book.location}</td>
                             <td>
                                 {
                                     book.productprice && !book.paid &&

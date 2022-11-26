@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { authContext } from '../../../context/AuthProvider';
 
@@ -8,6 +9,8 @@ const Signup = () => {
     const { createUser, providerLogin, updateUser } = useContext(authContext);
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.from?.state?.pathname || '/';
 
     const handleSignUp = (data) => {
         console.log(data);
@@ -28,7 +31,8 @@ const Signup = () => {
                 const users = {
                     name: data.name,
                     email: data.email,
-                    role: data.role
+                    role: data.role,
+                    status: 'Unverified'
                 };
 
                 fetch('http://localhost:5000/users', {
@@ -49,6 +53,24 @@ const Signup = () => {
                         });
                     });
 
+                const currentUser = {
+                    email: user.email
+                };
+
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        localStorage.setItem('listit-classified', data.token);
+                        navigate(from, { replace: true });
+                        toast.success('Thank you for login');
+                    });
+
 
             })
             .catch(error => {
@@ -60,6 +82,24 @@ const Signup = () => {
             .then((result) => {
                 const user = result.user;
                 console.log(user);
+
+                const currentUser = {
+                    email: user.email
+                };
+
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        localStorage.setItem('listit-classified', data.token);
+                        navigate(from, { replace: true });
+                        toast.success('Thank you for login');
+                    });
             })
             .catch((err) => console.error(err));
     };

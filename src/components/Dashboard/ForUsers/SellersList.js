@@ -49,6 +49,28 @@ const SellersList = () => {
             });
     };
 
+    const handleVerify = (seller) => {
+        console.log(seller);
+        fetch(`http://localhost:5000/users/seller/${seller?._id}`, {
+            method: 'PUT',
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                fetch(`http://localhost:5000/users/updateseller/${seller?.email}`, {
+                    method: 'PUT',
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        refetch();
+                        if (data.modifiedCount > 0) {
+                            toast.success('Your status has been changed');
+                        }
+                    });
+
+            });
+    };
+
 
     return (
         <div>
@@ -61,6 +83,7 @@ const SellersList = () => {
                             <th>SL</th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Status</th>
                             <th>Role</th>
                             <th>Change Role</th>
                             <th>Action</th>
@@ -73,6 +96,23 @@ const SellersList = () => {
                                 <th>{index + 1}</th>
                                 <td>{seller.name}</td>
                                 <td>{seller.email}</td>
+                                <td>
+                                    {
+                                        seller?.status !== 'Verified' &&
+                                        <Link
+                                            onClick={() => handleVerify(seller)}
+                                            className='font-bold tooltip'
+                                            data-tip="Make Verified"
+
+                                        >Unverfied</Link>
+                                    }
+                                    {
+                                        seller?.status === 'Verified' &&
+                                        <p className='text-rose-500 font-semibold'
+                                        >Verified</p>
+                                    }
+
+                                </td>
                                 <td>{seller.role}</td>
                                 <td>
                                     {

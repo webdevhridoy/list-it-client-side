@@ -1,13 +1,15 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { authContext } from '../../../context/AuthProvider';
 
 const Login = () => {
     const { signIn, providerLogin } = useContext(authContext);
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
 
     const handleSignIn = (data) => {
         signIn(data.email, data.password)
@@ -28,8 +30,8 @@ const Login = () => {
                     .then(res => res.json())
                     .then(data => {
                         localStorage.setItem('listit-classified', data.token);
-                        navigate('/dashboard');
                         toast.success('Thank you for login');
+                        navigate(from, { replace: true });
                     });
 
             })
@@ -46,7 +48,7 @@ const Login = () => {
                     email: user.email
                 };
 
-                fetch('https://bandaid-dental-server.vercel.app/jwt', {
+                fetch('http://localhost:5000/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -55,8 +57,9 @@ const Login = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        // console.log(data);
                         localStorage.setItem('listit-classified', data.token);
+                        toast.success('Thank you for login');
+                        navigate(from, { replace: true });
                     });
             })
             .catch((err) => console.error(err));
