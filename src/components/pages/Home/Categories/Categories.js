@@ -10,12 +10,13 @@ const Categories = () => {
             const data = await res.json();
             return data;
         }
-
     });
+
+
     return (
         <div className='my-12'>
             <h1 className="mb-5 text-2xl md:text-5xl font-bold pb-10">Choice Favourite Top Category</h1>
-            <div className='flex justify-center flex-col md:flex-row  items-center gap-10'>
+            <div className='justify-center grid grid-cols-1 md:grid-cols-3 gap-10'>
                 {
                     categories.map(category =>
                         <Category

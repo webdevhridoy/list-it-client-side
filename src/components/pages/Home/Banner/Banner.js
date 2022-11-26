@@ -8,8 +8,8 @@ const Banner = () => {
             <div className="hero-content text-center text-neutral-content">
                 <div >
                     <h1 className="mb-5 text-3xl md:text-7xl font-bold">Enjoy and Discover</h1>
-                    <p className="mb-5 md:text-3xl">Everything You Needin Listlt</p>
-                    <Link to='/blog' className="btn bg-rose-500">Our Blogs</Link>
+                    <p className="mb-5 md:text-3xl">Everything You Need in Listlt</p>
+                    <Link to='/blog' className="btn bg-rose-500 text-white">Our Blogs</Link>
                 </div>
             </div>
         </div>

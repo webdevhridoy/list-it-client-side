@@ -6,8 +6,7 @@ import Newsletter from './Newsletter/Newsletter';
 
 const Home = () => {
     return (
-        <>
-            <Banner></Banner>
+        <>  <Banner></Banner>
             <AdvertisementItems></AdvertisementItems>
             <Categories></Categories>
             <Newsletter></Newsletter>

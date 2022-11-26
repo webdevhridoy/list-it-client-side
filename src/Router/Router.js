@@ -2,6 +2,7 @@ import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import Login from '../components/Authentication/Login/Login';
 import Signup from '../components/Authentication/Signup/Signup';
+import HomeDashboard from '../components/Dashboard/Dashboard/HomeDashboard';
 import MyOrders from '../components/Dashboard/ForBuyers/MyOrders';
 import MyProfile from '../components/Dashboard/ForBuyers/MyProfile';
 import WishLists from '../components/Dashboard/ForBuyers/WishLists';
@@ -17,6 +18,7 @@ import Blog from '../components/pages/Blog/Blog';
 import CategoryGrid from '../components/pages/Home/Categories/CategoryGrid';
 import Home from '../components/pages/Home/Home';
 import Payment from '../components/pages/Payment/Payment';
+import PrivateRouter from '../components/PrivateRouter/PrivateRouter';
 import Main from '../layout/Main';
 
 export const router = createBrowserRouter([
@@ -36,8 +38,12 @@ export const router = createBrowserRouter([
 
             {
                 path: '/dashboard',
-                element: <LeftSideBar></LeftSideBar>,
+                element: <PrivateRouter><LeftSideBar></LeftSideBar></PrivateRouter>,
                 children: [
+                    {
+                        path: '/dashboard/',
+                        element: <HomeDashboard></HomeDashboard>
+                    },
                     {
                         path: '/dashboard/listofadmin',
                         element: <AdminList></AdminList>

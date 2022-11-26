@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { authContext } from '../../../context/AuthProvider';
 
@@ -13,7 +14,23 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                navigate('/dashboard');
+
+                const currentUser = {
+                    email: user.email
+                };
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        localStorage.setItem('listit-classified', data.token);
+                        navigate('/dashboard');
+                        toast.success('Thank you for login');
+                    });
 
             })
             .catch(err => console.error(err));
@@ -24,6 +41,23 @@ const Login = () => {
             .then((result) => {
                 const user = result.user;
                 console.log(user);
+
+                const currentUser = {
+                    email: user.email
+                };
+
+                fetch('https://bandaid-dental-server.vercel.app/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        // console.log(data);
+                        localStorage.setItem('listit-classified', data.token);
+                    });
             })
             .catch((err) => console.error(err));
     };

@@ -5,11 +5,11 @@ import Header from '../components/shared/Header/Header';
 
 const Main = () => {
     return (
-        <div >
+        <div>
             <div className='bg-black'>
                 <Header></Header>
             </div>
-            <div className='lg:mx-24'>
+            <div className='container mx-auto'>
                 <Outlet></Outlet>
             </div>
             <div>

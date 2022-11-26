@@ -17,9 +17,9 @@ const BookingModal = ({ product, setModalItem }) => {
             productname: data.productname,
             productprice: data.productprice,
             yourname: data.yourname,
-            youremail: data.youremail,
             location: data.location,
-            mobile: data.mobile
+            mobile: data.mobile,
+            email: data.email
         };
 
         console.log(bookings);
@@ -62,7 +62,7 @@ const BookingModal = ({ product, setModalItem }) => {
 
                             <input {...register('yourname', { required: 'Field is required' })} className="flex items-center h-10 text-black px-4 mt-2 rounded focus:outline-none focus:ring-2 mr-1" placeholder='Your Name' defaultValue={user?.displayName} />
 
-                            <input {...register('youremail', { required: 'Field is required' })} className="flex items-center text-black h-10 px-4 mt-2 rounded focus:outline-none focus:ring-2 mr-1" placeholder='Your Email' defaultValue={user?.email} readOnly />
+                            <input {...register('email', { required: 'Field is required' })} className="flex items-center text-black h-10 px-4 mt-2 rounded focus:outline-none focus:ring-2 mr-1" placeholder='Your Email' defaultValue={user?.email} readOnly />
 
                         </div>
 

@@ -9,7 +9,7 @@ const AdvertiseDetails = ({ ads }) => {
                 <div className='flex justify-center items-center'>
                     <img src={img} alt="" className="w-44 mb-4  bg-gray-500" />
                 </div>
-                <h2 className="mb-1 text-2xl font-semibold">{productname}</h2>
+                <h2 className="mb-1 text-2xl font-semibold text-rose-500">{productname}</h2>
                 <p className="text-gray-900 text-lg font-semibold"> Price: <span >{resaleprice}</span> <span className='line-through'>{originalprice}</span>
                 </p>
             </div>
