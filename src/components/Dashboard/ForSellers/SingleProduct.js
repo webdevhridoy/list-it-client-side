@@ -4,7 +4,7 @@ import useTitle from '../../Hook/useTitle';
 
 const SingleProduct = ({ handleDeleteProduct, product, index }) => {
     console.log(product);
-    const { categoryName, condition, description, img, location, originalprice, productname, resaleprice, sellername, utcDate, yearsofuse } = product;
+    const { categoryName, condition, description, img, location, originalprice, productname, resaleprice, sellername, utcDate, yearsofuse, availability, paid } = product;
     useTitle('Product');
 
     const handleAdvertise = () => {
@@ -19,7 +19,9 @@ const SingleProduct = ({ handleDeleteProduct, product, index }) => {
             resaleprice,
             sellername,
             utcDate,
-            yearsofuse
+            yearsofuse,
+            availability,
+            paid
         };
 
         fetch('http://localhost:5000/advertisement', {
@@ -38,6 +40,21 @@ const SingleProduct = ({ handleDeleteProduct, product, index }) => {
             });
     };
 
+    const handleMakeAvailability = (id) => {
+        console.log(id);
+        // fetch(`http://localhost:5000/users/admin/${id}`, {
+        //     method: 'PUT',
+        // })
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         console.log(data);
+        //         if (data.modifiedCount > 0) {
+        //             toast.success('Your role has been changed');
+        //             // refetch();
+        //         }
+        //     });
+    };
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
@@ -50,18 +67,31 @@ const SingleProduct = ({ handleDeleteProduct, product, index }) => {
             <td>
                 {
                     product.resaleprice && !product.availability &&
-                    <p className='px-2 py-1 rounded-md text-white bg-rose-500'
-                    >Available</p>
+                    <button
+                        className='px-2 py-1 rounded-md text-white bg-rose-500'
+                    >Available</button>
                 }
                 {
                     product.resaleprice && product.availability &&
-                    <p className='px-2 py-1 rounded-md text-white bg-rose-500 disabled'>Sold</p>
+                    <button onClick={() => handleMakeAvailability(product)}
+                        data-tip="Make Available"
+                        className='px-2 py-1 rounded-md text-white bg-rose-500 tooltip'>Sold</button>
                 }
             </td>
             <td>
                 <td>
-                    <label onClick={handleAdvertise}
-                        htmlFor="confirmationModal" className="px-2 py-1 rounded-md text-white bg-rose-500 cursor-pointer">Make Advertisement</label>
+
+                    {
+                        product.resaleprice && !product.availability &&
+                        <label onClick={handleAdvertise}
+
+                            className="px-2 py-1 rounded-md text-white bg-rose-500 cursor-pointer ">Make Advertisement</label>
+                    } {
+                        product.resaleprice && product.availability &&
+                        <p
+                            disabled
+                            className='px-2 py-1 rounded-md text-white bg-rose-500 '>Unavailable</p>
+                    }
                 </td>
             </td>
             <td>
