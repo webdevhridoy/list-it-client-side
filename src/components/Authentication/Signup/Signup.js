@@ -4,8 +4,10 @@ import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { authContext } from '../../../context/AuthProvider';
+import useTitle from '../../Hook/useTitle';
 
 const Signup = () => {
+    useTitle('Sign Up');
     const { createUser, providerLogin, updateUser } = useContext(authContext);
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate();

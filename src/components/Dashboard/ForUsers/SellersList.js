@@ -2,9 +2,11 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import useTitle from '../../Hook/useTitle';
 import Loader from '../../Loader/Loader';
 
 const SellersList = () => {
+    useTitle('Seller List');
     const { data: sellers = [], refetch, isLoading } = useQuery({
         queryKey: ['seller'],
         queryFn: async () => {

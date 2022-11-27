@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
+import useTitle from '../../Hook/useTitle';
 
 const WishLists = () => {
+    useTitle('Wish List');
     const myWisthList = useLoaderData();
     return (
         <div className="overflow-x-auto">

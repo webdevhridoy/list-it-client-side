@@ -1,11 +1,14 @@
 import { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { authContext } from '../../../context/AuthProvider';
+import useTitle from '../../Hook/useTitle';
 import SingleProduct from './SingleProduct';
 
 const MyProducts = () => {
+    useTitle('My Products');
     const { user, logOut } = useContext(authContext);
     const [products, setProducts] = useState([]);
+    console.log(products);
 
     useEffect(() => {
         fetch(`http://localhost:5000/products?email=${user?.email}`, {

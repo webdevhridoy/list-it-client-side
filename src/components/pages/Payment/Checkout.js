@@ -1,8 +1,10 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
+import useTitle from '../../Hook/useTitle';
 
 const Checkout = ({ bookings }) => {
-    const { yourname, youremail, productprice, _id } = bookings;
+    useTitle('Checkout');
+    const { yourname, youremail, productprice, _id, bookingId } = bookings;
     // console.log(bookings);
     const [clientSecret, setClientSecret] = useState("");
     const [success, setSuccess] = useState('');
@@ -73,10 +75,12 @@ const Checkout = ({ bookings }) => {
                 productprice,
                 transactionId: paymentIntent.id,
                 youremail,
-                bookingId: _id
+                bookingsId: _id,
+                bookingId,
+
             };
             fetch('http://localhost:5000/payments', {
-                method: 'POST',
+                method: 'PUT',
                 headers: {
                     'content-type': 'application/json',
                     // authorization: `bearer ${localStorage.getItem('Access-Token')}`
@@ -90,6 +94,18 @@ const Checkout = ({ bookings }) => {
                         setSuccess('Congrats! You payment is completed');
                         setTransactionId(paymentIntent.id);
                     }
+                    // fetch('http://localhost:5000/payment', {
+                    //     method: 'PUT',
+                    //     headers: {
+                    //         'content-type': 'application/json',
+                    //         // authorization: `bearer ${localStorage.getItem('Access-Token')}`
+                    //     },
+                    //     body: JSON.stringify(payment)
+                    // })
+                    //     .then(res => res.json())
+                    //     .then(data => {
+                    //         console.log(data.result.insertedId);
+                    //     });
                 });
         }
         setProcessing(false);

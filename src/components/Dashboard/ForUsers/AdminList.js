@@ -1,9 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import useTitle from '../../Hook/useTitle';
 import Loader from '../../Loader/Loader';
 
 const AdminList = () => {
-
+    useTitle('Admin List');
     const { data: users = [], isLoading } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {

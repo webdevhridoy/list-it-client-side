@@ -4,9 +4,11 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { authContext } from '../../../context/AuthProvider';
+import useTitle from '../../Hook/useTitle';
 import Loader from '../../Loader/Loader';
 
 const AddProducts = () => {
+    useTitle('Add Products');
     const { user } = useContext(authContext);
     console.log(user);
     const { register, handleSubmit } = useForm();
@@ -25,8 +27,9 @@ const AddProducts = () => {
     }
 
 
-    const current = new Date();
-    const utcDate = new Date(current.getUTCFullYear(), current.getUTCMonth(), current.getUTCDate(), current.getUTCHours(), current.getUTCMinutes(), current.getUTCSeconds(), current.getUTCMilliseconds());
+
+    const utcDate = new Date().toLocaleString();
+
 
     const handleSignIn = (data) => {
         console.log(data);

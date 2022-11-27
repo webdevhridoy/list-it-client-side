@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import toast from 'react-hot-toast';
+import useTitle from '../../Hook/useTitle';
 
 const SingleProduct = ({ handleDeleteProduct, product, index }) => {
     console.log(product);
     const { categoryName, condition, description, img, location, originalprice, productname, resaleprice, sellername, utcDate, yearsofuse } = product;
+    useTitle('Product');
 
     const handleAdvertise = () => {
         const advertisement = {
@@ -35,13 +37,27 @@ const SingleProduct = ({ handleDeleteProduct, product, index }) => {
                 }
             });
     };
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     return (
         <tr>
             <th>{index + 1}</th>
             <th><img className='w-auto h-16' src={product.img} alt='' /></th>
             <td>{product.productname}</td>
             <td>${product.resaleprice}</td>
-            <td>Available / Sold</td>
+            <td>
+                {
+                    product.resaleprice && !product.availability &&
+                    <p className='px-2 py-1 rounded-md text-white bg-rose-500'
+                    >Available</p>
+                }
+                {
+                    product.resaleprice && product.availability &&
+                    <p className='px-2 py-1 rounded-md text-white bg-rose-500 disabled'>Sold</p>
+                }
+            </td>
             <td>
                 <td>
                     <label onClick={handleAdvertise}

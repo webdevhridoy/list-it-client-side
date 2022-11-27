@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import { authContext } from '../../../context/AuthProvider';
 import useAdmin from '../../Hook/useAdmin';
 import useSeller from '../../Hook/useSeller';
+import useTitle from '../../Hook/useTitle';
 
 const Dashboard = () => {
+    useTitle('Dashboard');
     const { user } = useContext(authContext);
     const [isAdmin] = useAdmin(user?.email);
     const [isSeller] = useSeller(user?.email);

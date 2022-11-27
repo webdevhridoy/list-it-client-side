@@ -62,7 +62,6 @@ const CategoryProductDetails = ({ product }) => {
                     {utcDate}
                 </div>
             </div>
-
             <div>
                 <div className='flex justify-center items-center'>
                     <img src={img} alt="" className="w-44 mb-4  bg-gray-500" />
@@ -72,7 +71,7 @@ const CategoryProductDetails = ({ product }) => {
                 </p>
                 <p className="text-sm  text-gray-400">{description}</p>
             </div>
-            <div className="flex flex-wrap justify-between">
+            <div className="flex justify-between items-center ">
                 <div className="space-x-2">
                     <p aria-label="Location" type="button" className="p-2 text-center flex justify-between items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -96,11 +95,28 @@ const CategoryProductDetails = ({ product }) => {
                         </svg>
                     </button>
                 </div>
-                <button >
-                    <label onClick={() => handleModal(product)}
-                        htmlFor="my-modal"
-                        className="btn bg-rose-500 border-0 text-white">Book Now</label>
-                </button>
+                <div>
+                    <button >
+                        {
+                            product.resaleprice && !product.availability && <label onClick={() => handleModal(product)}
+                                htmlFor="my-modal"
+                                className="btn bg-rose-500 border-0 text-white">Book Now</label>
+                        }
+                    </button>
+                    {
+                        product.resaleprice && product.availability &&
+                        <button disabled className='px-5 py-2 rounded-md text-white bg-black disabled'>Sold</button>
+
+                    }
+                </div>
+
+
+
+
+
+
+
+
             </div>
             {modalItem &&
                 <BookingModal

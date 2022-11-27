@@ -1,6 +1,8 @@
 import React from 'react';
+import useTitle from '../../Hook/useTitle';
 
 const Blog = () => {
+    useTitle('Blog');
     return (
         <div>
             <div className="hero h-[120px] md:h-[150px]" style={{ backgroundImage: `url("https://i.ibb.co/Jqmn6hT/bannerbg.png")` }}>

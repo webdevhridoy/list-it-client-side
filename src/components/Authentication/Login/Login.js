@@ -3,8 +3,10 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { authContext } from '../../../context/AuthProvider';
+import useTitle from '../../Hook/useTitle';
 
 const Login = () => {
+    useTitle('Login');
     const { signIn, providerLogin } = useContext(authContext);
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate();

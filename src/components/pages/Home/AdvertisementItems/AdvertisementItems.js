@@ -20,7 +20,7 @@ const AdvertisementItems = () => {
     }
     return (
         <div className='py-12'>
-            <h1 className="mb-5 text-2xl md:text-5xl font-bold">Advertised items</h1>
+            <h1 className="mb-5 text-2xl md:text-5xl font-bold">Advertised items (DAILY DEALS)</h1>
 
             {
                 advertisements.length === 0 ? <>

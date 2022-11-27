@@ -2,9 +2,11 @@ import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { authContext } from '../../../context/AuthProvider';
+import useTitle from '../../Hook/useTitle';
 
 
 const MyOrders = () => {
+    useTitle('My Orders');
     const { user } = useContext(authContext);
     // console.log(user);
     const [response, setResponse] = useState(null);
