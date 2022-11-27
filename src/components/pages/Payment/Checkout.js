@@ -5,7 +5,7 @@ import useTitle from '../../Hook/useTitle';
 const Checkout = ({ bookings }) => {
     useTitle('Checkout');
     const { yourname, youremail, productprice, _id, bookingId } = bookings;
-    // console.log(bookings);
+    console.log(bookings);
     const [clientSecret, setClientSecret] = useState("");
     const [success, setSuccess] = useState('');
     const [processing, setProcessing] = useState(false);
@@ -79,6 +79,7 @@ const Checkout = ({ bookings }) => {
                 bookingId,
 
             };
+            console.log(payment);
             fetch('http://localhost:5000/payments', {
                 method: 'PUT',
                 headers: {

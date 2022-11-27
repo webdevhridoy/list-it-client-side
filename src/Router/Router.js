@@ -18,6 +18,7 @@ import Blog from '../components/pages/Blog/Blog';
 import CategoryGrid from '../components/pages/Home/Categories/CategoryGrid';
 import Home from '../components/pages/Home/Home';
 import Payment from '../components/pages/Payment/Payment';
+import AdminRouter from '../components/PrivateRouter/AdminRouter';
 import PrivateRouter from '../components/PrivateRouter/PrivateRouter';
 import ErrorPage from '../components/shared/ErrorPage/ErrorPage';
 import Main from '../layout/Main';
@@ -48,15 +49,15 @@ export const router = createBrowserRouter([
                     },
                     {
                         path: '/dashboard/listofadmin',
-                        element: <AdminList></AdminList>
+                        element: <AdminRouter><AdminList></AdminList></AdminRouter>
                     },
                     {
                         path: '/dashboard/listofbuyers',
-                        element: <BuyerList></BuyerList>
+                        element: <AdminRouter><BuyerList></BuyerList></AdminRouter>
                     },
                     {
                         path: '/dashboard/listofsellers',
-                        element: <SellersList></SellersList>
+                        element: <AdminRouter><SellersList></SellersList></AdminRouter>
                     },
                     {
                         path: '/dashboard/addcategory',
@@ -73,7 +74,7 @@ export const router = createBrowserRouter([
                     },
                     {
                         path: '/dashboard/mybuyers',
-                        element: <MyBuyers></MyBuyers>
+                        element: <MyBuyers></MyBuyers>,
                     },
                     {
                         path: '/dashboard/myorders',

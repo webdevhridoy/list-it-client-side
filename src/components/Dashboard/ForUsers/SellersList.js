@@ -7,6 +7,10 @@ import Loader from '../../Loader/Loader';
 
 const SellersList = () => {
     useTitle('Seller List');
+    // const { user } = useContext(authContext);
+    // const [isSeller, isSellerLoading] = useSeller(user?.email);
+    // const navigate = useNavigate();
+
     const { data: sellers = [], refetch, isLoading } = useQuery({
         queryKey: ['seller'],
         queryFn: async () => {
@@ -15,6 +19,10 @@ const SellersList = () => {
             return data;
         }
     });
+
+    if (isLoading) {
+        return <Loader></Loader>;
+    }
 
     const handleUserDelete = (seller) => {
         fetch(`http://localhost:5000/users/${seller._id}`, {
@@ -33,9 +41,8 @@ const SellersList = () => {
             });
     };
 
-    if (isLoading) {
-        return <Loader></Loader>;
-    }
+
+
 
     const handleMakeAdmin = (id) => {
         fetch(`http://localhost:5000/users/admin/${id}`, {
@@ -73,6 +80,13 @@ const SellersList = () => {
             });
     };
 
+    // if (isSellerLoading) {
+    //     return <Loader></Loader>;
+    // }
+
+    // if (!isSeller) {
+    //     navigate('/');
+    // }
 
     return (
         <div>

@@ -105,7 +105,7 @@ const CategoryProductDetails = ({ product }) => {
                     </button>
                     {
                         product.resaleprice && product.availability &&
-                        <button disabled className='px-5 py-2 rounded-md text-white bg-black disabled'>Sold</button>
+                        <button disabled className='px-5 py-2 rounded-md text-white bg-black disabled'>Sold Out</button>
 
                     }
                 </div>

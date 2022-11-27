@@ -4,15 +4,20 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { authContext } from '../../../context/AuthProvider';
+// import useAdmin from '../../Hook/useAdmin';
+// import useSeller from '../../Hook/useSeller';
 import useTitle from '../../Hook/useTitle';
 import Loader from '../../Loader/Loader';
 
 const AddProducts = () => {
     useTitle('Add Products');
-    const { user } = useContext(authContext);
-    console.log(user);
     const { register, handleSubmit } = useForm();
+    const { user } = useContext(authContext);
+    // const [isSeller, isSellerLoading] = useSeller(user?.email);
+    // const [isAdmin, isAdminLoading] = useAdmin(user?.email);
     const navigate = useNavigate();
+
+
     const { data: categories = [], isLoading } = useQuery({
         queryKey: ['categories'],
         queryFn: async () => {
@@ -25,8 +30,6 @@ const AddProducts = () => {
     if (isLoading) {
         return <Loader></Loader>;
     }
-
-
 
     const utcDate = new Date().toLocaleString();
 
@@ -90,6 +93,15 @@ const AddProducts = () => {
 
 
     };
+
+    // if (!isAdminLoading || !isSellerLoading) {
+    //     return <Loader></Loader>;
+    // }
+
+    // if (!isAdmin || !isSeller) {
+    //     navigate('/');
+    // }
+
     return (
         <div >
             <form onSubmit={handleSubmit(handleSignIn)} novalidate="" action="" className="flex flex-col w-full  p-12 rounded shadow-lg ng-untouched ng-pristine ng-valid  bg-black text-white">

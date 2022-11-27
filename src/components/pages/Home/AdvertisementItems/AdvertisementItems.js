@@ -18,32 +18,38 @@ const AdvertisementItems = () => {
     if (isLoading) {
         return <Loader></Loader>;
     }
+
+
+    console.log(advertisements);
     return (
-        <div className='py-12'>
-            <h1 className="mb-5 text-2xl md:text-5xl font-bold">Advertised items (DAILY DEALS)</h1>
+        <>
+            {advertisements.length > 0 &&
+                <>
+                    <div className='py-12'>
+                        <h1 className="mb-5 text-2xl md:text-5xl font-bold">Advertised items</h1>
+                        <img className='w-full pb-10' src={ads} alt="" />
+                        {
+                            <>
 
-            {
-                advertisements.length === 0 ? <>
-                    <img className='w-full' src={ads} alt="" />
+                                <div className='grid grid-cols-1 md:grid-cols-3 gap-10'>
+                                    {
 
+                                        advertisements.map(ads => <AdvertiseDetails
+                                            key={ads._id}
+                                            ads={ads}
+                                        ></AdvertiseDetails>)
+                                    }
+                                </div>
+                            </>
+
+                        }
+
+                    </div>
                 </>
-                    :
-                    <>
-                        <div className='grid grid-cols-1 md:grid-cols-3 gap-10'>
-                            {
-
-                                advertisements.map(ads => <AdvertiseDetails
-                                    key={ads._id}
-                                    ads={ads}
-                                ></AdvertiseDetails>)
-                            }
-                        </div>
-                    </>
 
             }
+        </>
 
-
-        </div>
     );
 };
 

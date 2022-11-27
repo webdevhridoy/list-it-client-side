@@ -3,9 +3,9 @@ import toast from 'react-hot-toast';
 import useTitle from '../../Hook/useTitle';
 
 const SingleProduct = ({ handleDeleteProduct, product, index }) => {
-    console.log(product);
-    const { categoryName, condition, description, img, location, originalprice, productname, resaleprice, sellername, utcDate, yearsofuse, availability, paid } = product;
+    const { categoryName, condition, description, img, location, originalprice, productname, resaleprice, sellername, utcDate, yearsofuse, availability, paid, _id } = product;
     useTitle('Product');
+    console.log(product);
 
     const handleAdvertise = () => {
         const advertisement = {
@@ -21,7 +21,8 @@ const SingleProduct = ({ handleDeleteProduct, product, index }) => {
             utcDate,
             yearsofuse,
             availability,
-            paid
+            paid,
+            bookingId: _id
         };
 
         fetch('http://localhost:5000/advertisement', {
@@ -40,21 +41,6 @@ const SingleProduct = ({ handleDeleteProduct, product, index }) => {
             });
     };
 
-    const handleMakeAvailability = (id) => {
-        console.log(id);
-        // fetch(`http://localhost:5000/users/admin/${id}`, {
-        //     method: 'PUT',
-        // })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         console.log(data);
-        //         if (data.modifiedCount > 0) {
-        //             toast.success('Your role has been changed');
-        //             // refetch();
-        //         }
-        //     });
-    };
-
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
@@ -68,14 +54,14 @@ const SingleProduct = ({ handleDeleteProduct, product, index }) => {
                 {
                     product.resaleprice && !product.availability &&
                     <button
+                        disabled
                         className='px-2 py-1 rounded-md text-white bg-rose-500'
                     >Available</button>
                 }
                 {
                     product.resaleprice && product.availability &&
-                    <button onClick={() => handleMakeAvailability(product)}
-                        data-tip="Make Available"
-                        className='px-2 py-1 rounded-md text-white bg-rose-500 tooltip'>Sold</button>
+                    <button
+                        className='px-2 py-1 rounded-md text-white bg-rose-500 block' disabled>Sold</button>
                 }
             </td>
             <td>

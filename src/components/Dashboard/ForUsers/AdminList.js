@@ -1,11 +1,19 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { authContext } from '../../../context/AuthProvider';
+import useAdmin from '../../Hook/useAdmin';
 import useTitle from '../../Hook/useTitle';
 import Loader from '../../Loader/Loader';
 
 const AdminList = () => {
+    const { user } = useContext(authContext);
+    const [isAdmin, isAdminLoading] = useAdmin(user?.email);
+    const navigate = useNavigate();
+
+
     useTitle('Admin List');
-    const { data: users = [], isLoading } = useQuery({
+    const { data: users = [] } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/users');
@@ -15,10 +23,13 @@ const AdminList = () => {
 
     });
 
-    if (isLoading) {
+    if (isAdminLoading) {
         return <Loader></Loader>;
     }
 
+    if (!isAdmin) {
+        navigate('/');
+    }
     return (
         <div >
             <div className="overflow-x-auto">
