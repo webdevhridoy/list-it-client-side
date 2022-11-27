@@ -1,3 +1,46 @@
+# Here i'm going to share Assignment-12 that is single page classified website application and here is the process and packages I have used. I have used React with several packges and tailwid css. Below you wil get all the details:
+
+1.  I have installed:
+
+- react router dom
+- react-hot-toast
+- sweetalert2
+- react-photo-view
+- react icons
+- react tankStack query
+- react hook form
+- google firebase
+- axios
+
+2.  For dependency I have used
+
+- TailwindCSS
+
+3.  Let's talk about the functionality that you will in my website.
+
+- It's single service reviews webstie
+- Here I have explore the second hand products sell website
+- Here people can buy something which is used products
+- In fact a specific person can not see others buyers purchased products.
+- Here admin, seller and buyer route is completely sucured.
+- So, it's authorizaiton and authentications field
+- And for authentication I have used google firebase
+- And this website is complete run based on CRUD.
+
+4.  Let's talk about how it's worked?
+
+- So, it's really exciting for me as I have used MongoDB and here I have store the data.
+- There are second hand proudcts for specific persons who wnat to sell and want to buy.
+
+5.  It's responsive website where grid and flex used for.
+
+# Here is the admin user and password:
+
+adminEmail: admin@gmail.com
+adminPassword: 123456A@
+
+# Here is the website link:
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

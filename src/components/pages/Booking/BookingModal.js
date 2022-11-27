@@ -65,7 +65,7 @@ const BookingModal = ({ product, setModalItem }) => {
 
                         <div className='flex flex-col md:flex-row justify-between items-center'>
 
-                            <input {...register('yourname', { required: 'Field is required' })} className="flex items-center h-10 text-black px-4 mt-2 rounded focus:outline-none focus:ring-2 mr-1" placeholder='Your Name' defaultValue={user?.displayName} />
+                            <input {...register('yourname', { required: 'Field is required' })} className="flex items-center h-10 text-black px-4 mt-2 rounded focus:outline-none focus:ring-2 mr-1" placeholder='Your Name' defaultValue={user?.displayName} readOnly />
 
                             <input {...register('email', { required: 'Field is required' })} className="flex items-center text-black h-10 px-4 mt-2 rounded focus:outline-none focus:ring-2 mr-1" placeholder='Your Email' defaultValue={user?.email} readOnly />
 

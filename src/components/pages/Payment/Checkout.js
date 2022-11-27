@@ -1,5 +1,6 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import useTitle from '../../Hook/useTitle';
 
 const Checkout = ({ bookings }) => {
@@ -94,6 +95,7 @@ const Checkout = ({ bookings }) => {
                     if (data.result.insertedId) {
                         setSuccess('Congrats! You payment is completed');
                         setTransactionId(paymentIntent.id);
+                        toast.success('Congrats! You payment is completed');
                     }
                     // fetch('http://localhost:5000/payment', {
                     //     method: 'PUT',

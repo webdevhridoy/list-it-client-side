@@ -62,6 +62,7 @@ const AddProducts = () => {
                         originalprice: data.originalprice,
                         resaleprice: data.resaleprice,
                         yearsofuse: data.yearsofuse,
+                        yearsofpurchase: data.yearsofpurchase,
                         img: imgData.data.url,
                         utcDate,
                         categoryName: categories.find(cat => cat._id === data.category)['categoryname'],
@@ -127,6 +128,9 @@ const AddProducts = () => {
 
                 <label for="password" className="self-start mt-3 text-xs font-semibold">Years of Use</label>
                 <input {...register('yearsofuse', { required: 'Field is required' })} className="flex items-center h-12 text-black px-4 mt-2 rounded focus:outline-none focus:ring-2" />
+
+                <label for="password" className="self-start mt-3 text-xs font-semibold">Year of purchase</label>
+                <input {...register('yearsofpurchase', { required: 'Field is required' })} className="flex items-center h-12 text-black px-4 mt-2 rounded focus:outline-none focus:ring-2" />
 
                 <label for="password" className="self-start mt-3 text-xsfont-semibold">Category</label>
                 <select className='mt-5 py-2 text-black' {...register('category', { required: 'Field is required' })}>
