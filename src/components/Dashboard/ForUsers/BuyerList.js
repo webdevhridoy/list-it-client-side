@@ -1,16 +1,23 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { authContext } from '../../../context/AuthProvider';
+import useAdmin from '../../Hook/useAdmin';
 import useTitle from '../../Hook/useTitle';
 import Loader from '../../Loader/Loader';
 
 const BuyerList = () => {
     useTitle('Buyer List');
+    const { user } = useContext(authContext);
+    const [isAdmin, isAdminLoading] = useAdmin(user?.email);
+    const navigate = useNavigate();
+
+
     const { data: buyers = [], isLoading, refetch } = useQuery({
         queryKey: ['buyer'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/users/buyer');
+            const res = await fetch('https://listit-classified-server.vercel.app/users/buyer');
             const data = await res.json();
             return data;
         }
@@ -19,8 +26,16 @@ const BuyerList = () => {
         return <Loader></Loader>;
     }
 
+    if (isAdminLoading) {
+        return <Loader></Loader>;
+    }
+
+    if (!isAdmin) {
+        navigate('/');
+    }
+
     const handleUserDelete = (buyer) => {
-        fetch(`http://localhost:5000/users/${buyer._id}`, {
+        fetch(`https://listit-classified-server.vercel.app/users/${buyer._id}`, {
             method: 'DELETE',
             // headers: {
             //     authorization: `bearer ${localStorage.getItem('Access-Token')}`
@@ -37,12 +52,12 @@ const BuyerList = () => {
     };
 
     const handleMakeAdmin = (id) => {
-        fetch(`http://localhost:5000/users/admin/${id}`, {
+        fetch(`https://listit-classified-server.vercel.app/users/admin/${id}`, {
             method: 'PUT',
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 if (data.modifiedCount > 0) {
                     toast.success('Your role has been changed');
                     refetch();

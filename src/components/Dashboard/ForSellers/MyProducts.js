@@ -8,10 +8,10 @@ const MyProducts = () => {
     useTitle('My Products');
     const { user, logOut } = useContext(authContext);
     const [products, setProducts] = useState([]);
-    console.log(products);
+    // console.log(products);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/products?email=${user?.email}`, {
+        fetch(`https://listit-classified-server.vercel.app/products?email=${user?.email}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('listit-classified')}`
             }
@@ -30,7 +30,7 @@ const MyProducts = () => {
     // const { data: products = [], refetch, isLoading } = useQuery({
     //     queryKey: ['product'],
     //     queryFn: async () => {
-    //         const res = await fetch(`http://localhost:5000/products?userEmail=${user?.email}`, {
+    //         const res = await fetch(`https://listit-classified-server.vercel.app/products?userEmail=${user?.email}`, {
     //             headers: {
     //                 authorization: `Bearer ${localStorage.getItem('listit-classified')}`
     //             }
@@ -42,9 +42,9 @@ const MyProducts = () => {
     // });
 
     const handleDeleteProduct = product => {
-        console.log(product);
+        // console.log(product);
 
-        fetch(`http://localhost:5000/allproducts/${product._id}`, {
+        fetch(`https://listit-classified-server.vercel.app/allproducts/${product._id}`, {
             method: 'DELETE',
             // headers: {
             //     authorization: `bearer ${localStorage.getItem('Access-Token')}`

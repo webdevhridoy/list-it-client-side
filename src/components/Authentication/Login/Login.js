@@ -17,12 +17,12 @@ const Login = () => {
         signIn(data.email, data.password)
             .then(result => {
                 const user = result.user;
-                console.log(user);
+                // console.log(user);
 
                 const currentUser = {
                     email: user.email
                 };
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://listit-classified-server.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -44,13 +44,13 @@ const Login = () => {
         providerLogin()
             .then((result) => {
                 const user = result.user;
-                console.log(user);
+                // console.log(user);
 
                 const currentUser = {
                     email: user.email
                 };
 
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://listit-classified-server.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

@@ -33,7 +33,7 @@ const Dashboard = () => {
     </>;
     return (
         <div>
-            <aside className="w-full p-6 sm:w-60 bg-black text-white mt-10 text-left">
+            <aside className="w-full p-6 sm:w-60 bg-black text-white md:mt-10 text-left">
                 <div className='mb-5'>
                     {user?.uid || user?.email || user?.photoURL ?
                         <>

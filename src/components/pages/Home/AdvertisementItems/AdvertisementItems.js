@@ -9,7 +9,7 @@ const AdvertisementItems = () => {
     const { data: advertisements = [], isLoading } = useQuery({
         queryKey: ['advertisement'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/advertisement');
+            const res = await fetch('https://listit-classified-server.vercel.app/advertisement');
             const data = await res.json();
             return data;
         }
@@ -20,7 +20,7 @@ const AdvertisementItems = () => {
     }
 
 
-    console.log(advertisements);
+    // console.log(advertisements);
     return (
         <>
             {advertisements.length > 0 &&

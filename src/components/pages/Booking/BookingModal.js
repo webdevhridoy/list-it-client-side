@@ -7,13 +7,13 @@ import { authContext } from '../../../context/AuthProvider';
 const BookingModal = ({ product, setModalItem }) => {
     const navigate = useNavigate();
     const { productname, resaleprice, img, _id } = product;
-    console.log(product);
+    // console.log(product);
     const { user } = useContext(authContext);
     const { register, handleSubmit } = useForm();
 
 
     const handleBooking = (data) => {
-        console.log(data);
+        // console.log(data);
         const bookings = {
             productname: data.productname,
             productprice: data.productprice,
@@ -27,10 +27,10 @@ const BookingModal = ({ product, setModalItem }) => {
 
         };
 
-        console.log(bookings);
+        // console.log(bookings);
 
         // save information to the database;
-        fetch('http://localhost:5000/bookings', {
+        fetch('https://listit-classified-server.vercel.app/bookings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -39,7 +39,7 @@ const BookingModal = ({ product, setModalItem }) => {
         })
             .then(res => res.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
                 // form er sese setModalItem(null) kore dibo
                 setModalItem(null);
                 navigate('/dashboard/myorders');

@@ -21,7 +21,7 @@ const AddProducts = () => {
     const { data: categories = [], isLoading } = useQuery({
         queryKey: ['categories'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/categories');
+            const res = await fetch('https://listit-classified-server.vercel.app/categories');
             const data = res.json();
             return data;
         }
@@ -35,7 +35,7 @@ const AddProducts = () => {
     const imageHostKey = process.env.REACT_APP_imgbb_key;
 
     const handleSignIn = (data) => {
-        console.log(data);
+        // console.log(data);
         const image = data.img[0];
         const formData = new FormData();
         formData.append('image', image);
@@ -46,7 +46,7 @@ const AddProducts = () => {
         })
             .then(res => res.json())
             .then(imgData => {
-                console.log(imgData);
+                // console.log(imgData);
                 if (imgData.success) {
                     console.log(imgData.data.url);
 
@@ -69,11 +69,11 @@ const AddProducts = () => {
                         email: user?.email || 'Unregisterd'
                     };
 
-                    console.log(products);
+                    // console.log(products);
 
                     // save information to the database;
 
-                    fetch('http://localhost:5000/products', {
+                    fetch('https://listit-classified-server.vercel.app/products', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',
@@ -82,7 +82,7 @@ const AddProducts = () => {
                     })
                         .then(res => res.json())
                         .then(result => {
-                            console.log(result);
+                            // console.log(result);
                             navigate('/dashboard/myproducts');
                             Swal.fire({
                                 text: 'Product added succssfully'
@@ -121,15 +121,15 @@ const AddProducts = () => {
                 <input {...register('location', { required: 'Field is required' })} className="flex items-center h-12 text-black px-4 mt-2 rounded focus:outline-none focus:ring-2" />
 
                 <label for="password" className="self-start mt-3 text-xs font-semibold">Resale Price</label>
-                <input {...register('resaleprice', { required: 'Field is required' })} className="flex items-center h-12 text-black px-4 mt-2 rounded focus:outline-none focus:ring-2" />
+                <input type='number' {...register('resaleprice', { required: 'Field is required' })} className="flex items-center h-12 text-black px-4 mt-2 rounded focus:outline-none focus:ring-2" placeholder='$' />
 
-                <label for="password" className="self-start mt-3 text-xs font-semibold">Original Price</label>
-                <input {...register('originalprice', { required: 'Field is required' })} className="flex items-center h-12 text-black px-4 mt-2 rounded focus:outline-none focus:ring-2" />
+                <label type='number' for="password" className="self-start mt-3 text-xs font-semibold">Original Price</label>
+                <input {...register('originalprice', { required: 'Field is required' })} className="flex items-center h-12 text-black px-4 mt-2 rounded focus:outline-none focus:ring-2" placeholder='$' />
 
-                <label for="password" className="self-start mt-3 text-xs font-semibold">Years of Use</label>
+                <label type='number' for="password" className="self-start mt-3 text-xs font-semibold">Years of Use</label>
                 <input {...register('yearsofuse', { required: 'Field is required' })} className="flex items-center h-12 text-black px-4 mt-2 rounded focus:outline-none focus:ring-2" />
 
-                <label for="password" className="self-start mt-3 text-xs font-semibold">Year of purchase</label>
+                <label type='number' for="password" className="self-start mt-3 text-xs font-semibold">Year of purchase</label>
                 <input {...register('yearsofpurchase', { required: 'Field is required' })} className="flex items-center h-12 text-black px-4 mt-2 rounded focus:outline-none focus:ring-2" />
 
                 <label for="password" className="self-start mt-3 text-xsfont-semibold">Category</label>
@@ -162,7 +162,7 @@ const AddProducts = () => {
                 })} className="input input-bordered w-full max-w-xs text-black" />
 
                 <label for="password" className="self-start mt-3 text-xs font-semibold">Description</label>
-                <input {...register('description', { required: 'Field is required' })} className="flex items-center h-12 text-black px-4 mt-2 rounded focus:outline-none focus:ring-2" />
+                <input minLength={140} {...register('description', { required: 'Field is required' })} className="flex items-center h-12 text-black px-4 mt-2 rounded focus:outline-none focus:ring-2" />
 
 
                 <button type="submit" className="flex items-center justify-center bg-white text-black mt-5 h-12 ">Add Now</button>

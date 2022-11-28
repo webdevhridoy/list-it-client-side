@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
+import { authContext } from '../../../../context/AuthProvider';
 import BookingModal from '../../Booking/BookingModal';
+import userProfile from '../../../../assest/userImage.png';
 
 const CategoryProductDetails = ({ product }) => {
-    // const {user}= useContext(authContext)
-    const { productname, location, resaleprice, yearsofuse, img, utcDate, sellername, description, originalprice, status, _id } = product;
+    const { user } = useContext(authContext);
+    const { productname, location, resaleprice, yearsofuse, img, utcDate, sellername, description, originalprice, status, _id, mobile, email } = product;
     const [modalItem, setModalItem] = useState(null);
-    console.log(product);
+    // console.log(product);
     // const [isWishAdd, setIsWishAdd] = useState(false);
 
     const handleModal = (product) => {
@@ -15,15 +17,19 @@ const CategoryProductDetails = ({ product }) => {
 
     const handleWishList = () => {
         const wishList = {
-
-            productname,
-            resaleprice,
+            productname: productname,
+            productprice: resaleprice,
+            yourname: sellername,
+            location: location,
+            mobile: mobile,
+            email: email,
+            bookingId: _id,
             img,
-            bookingId: _id
 
         };
+        // console.log(wishList);
 
-        fetch('http://localhost:5000/wishlist', {
+        fetch('https://listit-classified-server.vercel.app/wishlist', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -32,7 +38,7 @@ const CategoryProductDetails = ({ product }) => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 if (data.acknowledged) {
                     toast.success('Wish List Added');
                 }
@@ -44,7 +50,16 @@ const CategoryProductDetails = ({ product }) => {
         <div className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-md text-black   ">
             <div className='flex justify-between'>
                 <div className="flex justify-center space-x-4">
-                    <img alt="" src="https://source.unsplash.com/100x100/?portrait" className="object-cover w-12 h-12 rounded-full shadow  bg-gray-500" />
+                    {user?.uid || user?.email || user?.photoURL ?
+                        <>
+                            <img className='mr-3' style={{ height: '40px', width: '40px', borderRadius: '50%' }} src={user?.photoURL} alt="" title={user?.displayName} />
+                        </>
+                        :
+                        <>
+                            <img className='mr-3' style={{ height: '40px', width: '40px', borderRadius: '50%' }} src={userProfile} alt="" title={user?.displayName} />
+
+                        </>
+                    }
                     <div className="flex justify-center space-y-1">
                         <span className='mr-1'>
                             {sellername}
@@ -87,15 +102,29 @@ const CategoryProductDetails = ({ product }) => {
                 <div className="flex space-x-2 text-sm  text-gray-400">
                     <p type="button" className="flex items-center p-1 space-x-1.5"> Used: {yearsofuse} Year
                     </p>
-                    <button
-                        onClick={handleWishList}
-                        title='Wish List'
-                        type="button"
-                        className="flex items-center p-1 space-x-1.5">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 group-hover:opacity-70" fill="none" viewBox="0 0 24 24" stroke="gray">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                        </svg>
-                    </button>
+                    {
+                        product.resaleprice && !product.availability &&
+                        <button
+                            onClick={handleWishList}
+                            title='Wish List'
+                            type="button"
+                            className="flex items-center p-1 space-x-1.5">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 group-hover:opacity-70" fill="none" viewBox="0 0 24 24" stroke="gray">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                            </svg>
+                        </button>
+                    }
+                    {
+                        product.resaleprice && product.availability &&
+                        <button
+                            type="button"
+                            disabled
+                            className="flex items-center p-1 space-x-1.5">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 group-hover:opacity-70" fill="none" viewBox="0 0 24 24" stroke="gray">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                            </svg>
+                        </button>
+                    }
                 </div>
                 <div>
                     <button >

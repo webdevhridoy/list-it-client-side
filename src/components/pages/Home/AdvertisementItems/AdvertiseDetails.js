@@ -1,9 +1,9 @@
 import React from 'react';
 
 const AdvertiseDetails = ({ ads }) => {
-    console.log(ads);
+    // console.log(ads);
     const { productname, resaleprice, originalprice, img } = ads;
-    console.log(ads);
+    // console.log(ads);
     return (
 
         <>

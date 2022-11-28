@@ -9,7 +9,7 @@ const AddCategory = () => {
 
 
     const handleSignIn = (data, event) => {
-        console.log(data);
+        // console.log(data);
         const image = data.img[0];
         const formData = new FormData();
         formData.append('image', image);
@@ -20,9 +20,9 @@ const AddCategory = () => {
         })
             .then(res => res.json())
             .then(imgData => {
-                console.log(imgData);
+                // console.log(imgData);
                 if (imgData.success) {
-                    console.log(imgData.data.url);
+                    // console.log(imgData.data.url);
 
 
                     const categories = {
@@ -31,7 +31,7 @@ const AddCategory = () => {
                     };
                     //save information to the database 
 
-                    fetch('http://localhost:5000/categories', {
+                    fetch('https://listit-classified-server.vercel.app/categories', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',
@@ -40,7 +40,7 @@ const AddCategory = () => {
                     })
                         .then(res => res.json())
                         .then(result => {
-                            console.log(result);
+                            // console.log(result);
                             Swal.fire({
                                 text: 'Category has been added'
                             });

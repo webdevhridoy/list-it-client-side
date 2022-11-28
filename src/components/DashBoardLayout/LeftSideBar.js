@@ -5,7 +5,7 @@ import Dashboard from '../Dashboard/Dashboard/Dashboard';
 const LeftSideBar = () => {
     return (
         <div className='flex flex-col lg:flex-row'>
-            <aside className='md:h-screen lg:sticky lg:top-0'>
+            <aside className='md:h-screen md:sticky lg:top-0'>
                 <Dashboard></Dashboard>
             </aside>
             <main className='mt-10 md:ml-10 w-full'>

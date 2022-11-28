@@ -6,11 +6,12 @@ import Checkout from './Checkout';
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK);
 
-console.log(stripePromise);
+// console.log(stripePromise);
 
 const Payment = () => {
     const bookings = useLoaderData();
     const { productname, productprice, yourname } = bookings;
+    // console.log(bookings);
 
     return (
         <div>

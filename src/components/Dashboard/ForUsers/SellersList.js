@@ -1,20 +1,22 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { authContext } from '../../../context/AuthProvider';
+import useAdmin from '../../Hook/useAdmin';
 import useTitle from '../../Hook/useTitle';
 import Loader from '../../Loader/Loader';
 
 const SellersList = () => {
     useTitle('Seller List');
-    // const { user } = useContext(authContext);
-    // const [isSeller, isSellerLoading] = useSeller(user?.email);
-    // const navigate = useNavigate();
+    const { user } = useContext(authContext);
+    const [isAdmin, isAdminLoading] = useAdmin(user?.email);
+    const navigate = useNavigate();
 
     const { data: sellers = [], refetch, isLoading } = useQuery({
         queryKey: ['seller'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/users/seller');
+            const res = await fetch('https://listit-classified-server.vercel.app/users/seller');
             const data = await res.json();
             return data;
         }
@@ -24,8 +26,17 @@ const SellersList = () => {
         return <Loader></Loader>;
     }
 
+
+    if (isAdminLoading) {
+        return <Loader></Loader>;
+    }
+
+    if (!isAdmin) {
+        navigate('/');
+    }
+
     const handleUserDelete = (seller) => {
-        fetch(`http://localhost:5000/users/${seller._id}`, {
+        fetch(`https://listit-classified-server.vercel.app/users/${seller._id}`, {
             method: 'DELETE',
             // headers: {
             //     authorization: `bearer ${localStorage.getItem('Access-Token')}`
@@ -45,12 +56,12 @@ const SellersList = () => {
 
 
     const handleMakeAdmin = (id) => {
-        fetch(`http://localhost:5000/users/admin/${id}`, {
+        fetch(`https://listit-classified-server.vercel.app/users/admin/${id}`, {
             method: 'PUT',
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 if (data.modifiedCount > 0) {
                     toast.success('Your role has been changed');
                     refetch();
@@ -59,14 +70,14 @@ const SellersList = () => {
     };
 
     const handleVerify = (seller) => {
-        console.log(seller);
-        fetch(`http://localhost:5000/users/seller/${seller?._id}`, {
+        // console.log(seller);
+        fetch(`https://listit-classified-server.vercel.app/users/seller/${seller?._id}`, {
             method: 'PUT',
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
-                fetch(`http://localhost:5000/users/updateseller/${seller?.email}`, {
+                // console.log(data);
+                fetch(`https://listit-classified-server.vercel.app/users/updateseller/${seller?.email}`, {
                     method: 'PUT',
                 })
                     .then(res => res.json())

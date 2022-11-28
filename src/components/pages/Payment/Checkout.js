@@ -6,7 +6,7 @@ import useTitle from '../../Hook/useTitle';
 const Checkout = ({ bookings }) => {
     useTitle('Checkout');
     const { yourname, youremail, productprice, _id, bookingId } = bookings;
-    console.log(bookings);
+    // console.log(productprice);
     const [clientSecret, setClientSecret] = useState("");
     const [success, setSuccess] = useState('');
     const [processing, setProcessing] = useState(false);
@@ -15,7 +15,7 @@ const Checkout = ({ bookings }) => {
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://listit-classified-server.vercel.app/create-payment-intent", {
             method: "POST",
             headers: {
                 "content-Type": "application/json",
@@ -69,7 +69,7 @@ const Checkout = ({ bookings }) => {
             return;
         }
         if (paymentIntent.status === 'succeeded') {
-            console.log('card info', card);
+            // console.log('card info', card);
             // store paymentinfo in the database
 
             const payment = {
@@ -80,8 +80,8 @@ const Checkout = ({ bookings }) => {
                 bookingId,
 
             };
-            console.log(payment);
-            fetch('http://localhost:5000/payments', {
+            // console.log(payment);
+            fetch('https://listit-classified-server.vercel.app/payments', {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json',
@@ -91,13 +91,13 @@ const Checkout = ({ bookings }) => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data.result);
+                    // console.log(data.result);
                     if (data.result.insertedId) {
                         setSuccess('Congrats! You payment is completed');
                         setTransactionId(paymentIntent.id);
                         toast.success('Congrats! You payment is completed');
                     }
-                    // fetch('http://localhost:5000/payment', {
+                    // fetch('https://listit-classified-server.vercel.app/payment', {
                     //     method: 'PUT',
                     //     headers: {
                     //         'content-type': 'application/json',

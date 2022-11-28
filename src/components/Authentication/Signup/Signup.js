@@ -15,11 +15,11 @@ const Signup = () => {
     const from = location.from?.state?.pathname || '/';
 
     const handleSignUp = (data) => {
-        console.log(data);
+        // console.log(data);
         createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
-                console.log(user);
+                // console.log(user);
 
                 const profile = {
                     displayName: data.name
@@ -37,7 +37,7 @@ const Signup = () => {
                     status: 'Unverified'
                 };
 
-                fetch('http://localhost:5000/users', {
+                fetch('https://listit-classified-server.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -59,7 +59,7 @@ const Signup = () => {
                     email: user.email
                 };
 
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://listit-classified-server.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -83,13 +83,13 @@ const Signup = () => {
         providerLogin()
             .then((result) => {
                 const user = result.user;
-                console.log(user);
+                // console.log(user);
 
                 const currentUser = {
                     email: user.email
                 };
 
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://listit-classified-server.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

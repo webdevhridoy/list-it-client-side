@@ -5,7 +5,7 @@ import useTitle from '../../Hook/useTitle';
 const SingleProduct = ({ handleDeleteProduct, product, index }) => {
     const { categoryName, condition, description, img, location, originalprice, productname, resaleprice, sellername, utcDate, yearsofuse, availability, paid, _id } = product;
     useTitle('Product');
-    console.log(product);
+    // console.log(product);
 
     const handleAdvertise = () => {
         const advertisement = {
@@ -25,7 +25,7 @@ const SingleProduct = ({ handleDeleteProduct, product, index }) => {
             bookingId: _id
         };
 
-        fetch('http://localhost:5000/advertisement', {
+        fetch('https://listit-classified-server.vercel.app/advertisement', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -34,7 +34,7 @@ const SingleProduct = ({ handleDeleteProduct, product, index }) => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 if (data.acknowledged) {
                     toast.success('Advertisement Successfully Added');
                 }
