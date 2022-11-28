@@ -23,12 +23,12 @@ const Dashboard = () => {
         <Link className=' hover:bg-rose-500 py-1' to='/dashboard/addcategory' >Add Category</Link>
         <Link className=' hover:bg-rose-500 py-1' to='/dashboard/addproduct' >Add Product</Link>
         <Link className=' hover:bg-rose-500 py-1' to='/dashboard/myproducts' >My Products</Link>
-        <Link className=' hover:bg-rose-500 py-1' to='/dashboard/mybuyers' >My Buyers</Link>
+        {/* <Link className=' hover:bg-rose-500 py-1' to='/dashboard/mybuyers' >My Buyers</Link> */}
     </>;
 
     const buyer = <>
         <Link className=' hover:bg-rose-500 py-1' to='/dashboard/myorders' >My Orders</Link>
-        <Link className=' hover:bg-rose-500 py-1' to='/dashboard/myprofile'> My Profile</Link>
+        {/* <Link className=' hover:bg-rose-500 py-1' to='/dashboard/myprofile'> My Profile</Link> */}
         <Link className=' hover:bg-rose-500 py-1' to='/dashboard/wishlist' >WishList</Link>
     </>;
     return (

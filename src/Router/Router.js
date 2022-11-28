@@ -72,18 +72,18 @@ export const router = createBrowserRouter([
                         path: '/dashboard/myproducts',
                         element: <MyProducts></MyProducts>
                     },
-                    {
-                        path: '/dashboard/mybuyers',
-                        element: <MyBuyers></MyBuyers>,
-                    },
+                    // {
+                    //     path: '/dashboard/mybuyers',
+                    //     element: <MyBuyers></MyBuyers>,
+                    // },
                     {
                         path: '/dashboard/myorders',
                         element: <MyOrders></MyOrders>
                     },
-                    {
-                        path: '/dashboard/myprofile',
-                        element: <MyProfile></MyProfile>
-                    },
+                    // {
+                    //     path: '/dashboard/myprofile',
+                    //     element: <MyProfile></MyProfile>
+                    // },
                     {
                         path: '/dashboard/wishlist',
                         element: <WishLists></WishLists>
