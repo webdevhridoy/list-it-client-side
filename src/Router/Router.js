@@ -6,6 +6,7 @@ import HomeDashboard from '../components/Dashboard/Dashboard/HomeDashboard';
 import MyOrders from '../components/Dashboard/ForBuyers/MyOrders';
 import MyProfile from '../components/Dashboard/ForBuyers/MyProfile';
 import WishLists from '../components/Dashboard/ForBuyers/WishLists';
+import WishPayment from '../components/Dashboard/ForBuyers/WishPayment';
 import AddCategory from '../components/Dashboard/ForSellers/AddCategory';
 import AddProducts from '../components/Dashboard/ForSellers/AddProducts';
 import MyBuyers from '../components/Dashboard/ForSellers/MyBuyers';
@@ -95,9 +96,9 @@ export const router = createBrowserRouter([
                         element: <Payment></Payment>
                     },
                     {
-                        path: '/dashboard/wishlist/:id',
+                        path: '/dashboard/payment/:id',
                         loader: ({ params }) => fetch(`http://localhost:5000/wishlist/${params.id}`),
-                        element: <Payment></Payment>
+                        element: <WishPayment></WishPayment>
                     },
                 ]
             },

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import useTitle from '../../Hook/useTitle';
 
-const Checkout = ({ bookings }) => {
+const WishCheckout = ({ bookings }) => {
     useTitle('Checkout');
     const { yourname, youremail, productprice, _id, bookingId } = bookings;
     console.log(bookings);
@@ -113,7 +113,6 @@ const Checkout = ({ bookings }) => {
         }
         setProcessing(false);
     };
-
     return (
         <div>
             <form onSubmit={handleSubmit} >
@@ -151,4 +150,4 @@ const Checkout = ({ bookings }) => {
     );
 };
 
-export default Checkout;
+export default WishCheckout;

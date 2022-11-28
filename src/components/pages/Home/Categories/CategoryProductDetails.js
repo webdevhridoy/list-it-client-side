@@ -4,7 +4,7 @@ import BookingModal from '../../Booking/BookingModal';
 
 const CategoryProductDetails = ({ product }) => {
     // const {user}= useContext(authContext)
-    const { productname, location, resaleprice, yearsofuse, img, utcDate, sellername, description, originalprice, status } = product;
+    const { productname, location, resaleprice, yearsofuse, img, utcDate, sellername, description, originalprice, status, _id } = product;
     const [modalItem, setModalItem] = useState(null);
     console.log(product);
     // const [isWishAdd, setIsWishAdd] = useState(false);
@@ -18,7 +18,9 @@ const CategoryProductDetails = ({ product }) => {
 
             productname,
             resaleprice,
-            img
+            img,
+            bookingId: _id
+
         };
 
         fetch('http://localhost:5000/wishlist', {

@@ -5,6 +5,7 @@ import useTitle from '../../Hook/useTitle';
 const WishLists = () => {
     useTitle('Wish List');
     const myWisthList = useLoaderData();
+    console.log(myWisthList);
     return (
         <div className="overflow-x-auto">
             <table className="table w-full">
@@ -29,7 +30,7 @@ const WishLists = () => {
                             <td>${product.resaleprice}</td>
 
                             <td>
-                                <Link to={`/dashboard/wishlist/${product._id}`} className='px-2 py-1 rounded-md text-white bg-rose-500'
+                                <Link to={`/dashboard/payment/${product._id}`} className='px-2 py-1 rounded-md text-white bg-rose-500'
                                 >Pay</Link>
                             </td>
                         </tr>)

@@ -32,14 +32,14 @@ const AddProducts = () => {
     }
 
     const utcDate = new Date().toLocaleString();
-
+    const imageHostKey = process.env.REACT_APP_imgbb_key;
 
     const handleSignIn = (data) => {
         console.log(data);
         const image = data.img[0];
         const formData = new FormData();
         formData.append('image', image);
-        const url = 'https://api.imgbb.com/1/upload?key=a6f9b9970dcebe796e264ecdc5083f85';
+        const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
         fetch(url, {
             method: 'POST',
             body: formData

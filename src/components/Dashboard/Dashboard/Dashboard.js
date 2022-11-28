@@ -4,6 +4,7 @@ import { authContext } from '../../../context/AuthProvider';
 import useAdmin from '../../Hook/useAdmin';
 import useSeller from '../../Hook/useSeller';
 import useTitle from '../../Hook/useTitle';
+import userProfile from '../../../assest/userImage.png';
 
 const Dashboard = () => {
     useTitle('Dashboard');
@@ -32,7 +33,31 @@ const Dashboard = () => {
     </>;
     return (
         <div>
-            <aside className="w-full p-6 sm:w-60 bg-black text-white mt-10">
+            <aside className="w-full p-6 sm:w-60 bg-black text-white mt-10 text-left">
+                <div className='mb-5'>
+                    {user?.uid || user?.email || user?.photoURL ?
+                        <>
+                            <img className='mr-3' style={{ height: '40px', width: '40px', borderRadius: '50%' }} src={user?.photoURL} alt="" title={user?.displayName} />
+                        </>
+                        :
+                        <>
+                            <img className='mr-3' style={{ height: '40px', width: '40px', borderRadius: '50%' }} src={userProfile} alt="" title={user?.displayName} />
+
+                        </>
+                    }
+                    {
+                        user?.uid ? <>
+                            <h2>Hello, {user?.displayName}</h2>
+                            <span className='text-sm'>{user?.email}</span>
+                        </>
+                            :
+                            <>
+                                <h2>Not Found</h2>
+                                <span>Not Found</span>
+                            </>
+                    }
+
+                </div>
                 <nav className="space-y-8 text-sm">
                     {
                         isAdmin && <>
